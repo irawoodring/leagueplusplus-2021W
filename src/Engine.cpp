@@ -44,6 +44,6 @@ void Engine::setFrameRate(double _frameRate){
 
 }
 
-void Engine::addScene(Scene* scene){
-	this->scene = scene;	
+void Engine::setScene(Scene* scene){
+	this->currentScene = scene;	
 }

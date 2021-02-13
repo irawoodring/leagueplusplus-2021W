@@ -2,6 +2,9 @@
 #define			__H__INTERFACES__
 
 #include <SDL2/SDL.h>
+#include <functional>
+
+typedef std::function<void(double)> Callback;
 
 class GameObject {
 	public:
@@ -34,7 +37,7 @@ class UGameObject : public GameObject, public Updateable {
 
 };
 
-class DGameObject : public GameObjct, public Drawable {
+class DGameObject : public GameObject, public Drawable {
 
 };
 

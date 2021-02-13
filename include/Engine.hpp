@@ -10,14 +10,14 @@ class Engine {
 		Engine(int _width, int _height);
 		~Engine();
 		void run();
-		static SDL_Renderer* renderer;
 		void setFrameRate(double _frameRate);
 		void setScene(Scene* scene);
+		static SDL_Renderer* getRenderer();
 	private:
+		static SDL_Renderer* renderer;
 		int height;
 		int width;
 		SDL_Window* window = nullptr;
-		SDL_Renderer* renderer = renderer;
 		double frameRate;
 		Scene* currentScene;
 };

@@ -1,5 +1,8 @@
 #include "Engine.hpp"
 
+// For linking purposes, we need to declare this static member in the cpp file.
+SDL_Renderer* Engine::renderer = nullptr;
+
 Engine::Engine(int _width, int _height){
 	this->width = _width;
 	this->height = _height;

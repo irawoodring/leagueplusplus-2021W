@@ -14,6 +14,8 @@ class Engine {
 		void setScene(Scene* scene);
 		static SDL_Renderer* getRenderer();
 	private:
+		unsigned int current;
+		unsigned int last;
 		static SDL_Renderer* renderer;
 		int height;
 		int width;

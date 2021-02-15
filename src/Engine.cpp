@@ -29,18 +29,34 @@ Engine::~Engine(){
 void Engine::run(){
 	bool quit = false;
 	SDL_Event event;
+	last = SDL_GetTicks();
 	while(!quit){
+		last = current;
+		current = SDL_GetTicks();
+		int delta = current - last;
+		double gameDelta = (double)delta * 0.001;
 		// Get events
 		while(SDL_PollEvent(&event) > 0){
 			if(event.type == SDL_QUIT){
 				quit = true;
 			}
+
+			// Iterate over keyboard events
 			
 		}
 
 		// Update objects
-
+		for(std::vector<Updateable*>::iterator it = currentScene->updateables.begin(); it != currentScene->updateables.end(); ++it){
+			(*it)->update(gameDelta);
+		}			
+		
+		SDL_SetRenderDrawColor(Engine::renderer, 0, 0, 0, 0);
+		SDL_RenderClear(Engine::renderer);
 		// Render
+		for(std::vector<Drawable*>::iterator it = currentScene->drawables.begin(); it != currentScene->drawables.end(); ++it){
+			(*it)->draw();
+		}
+		SDL_RenderPresent(Engine::renderer);
 	}
 }
 

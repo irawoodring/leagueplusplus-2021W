@@ -6,4 +6,8 @@ int main(int argc, char** argv){
 	for(int i=0; i<argc; ++i){
 		SDL_Log("%d = %s", i, argv[i]);
 	}
+
+	Scene one;
+	Engine engine(1024, 768);
+	engine.run();
 }

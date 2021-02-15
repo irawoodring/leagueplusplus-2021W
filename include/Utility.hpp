@@ -8,6 +8,8 @@ typedef std::function<void(double)> Callback;
 class Vector2 {
 	public:
 		Vector2(double x, double y);
+		double getX();
+		double getY();
 		
 	private:
 		double x;
@@ -16,7 +18,8 @@ class Vector2 {
 
 class Vector3 : public Vector2 {
 	public:
-		 Vector3(double x, double y, double z); 
+		Vector3(double x, double y, double z); 
+		double getZ();
 	private:
 		double z;
 };

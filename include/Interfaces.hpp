@@ -28,6 +28,7 @@ class Drawable {
 
 	protected:
 		SDL_Rect* rect;
+		SDL_Texture* texture;
 };
 
 class UGameObject : public GameObject, public Updateable {

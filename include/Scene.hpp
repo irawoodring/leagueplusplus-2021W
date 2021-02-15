@@ -1,19 +1,20 @@
 #ifndef			__HPP__SCENE__
 #define			__HPP__SCENE__
 
-#include "Engine.hpp"
-#include "Interfaces.hpp"
 #include <SDL2/SDL.h>
 #include <vector>
 #include <utility>
 #include <functional>
+#include "Interfaces.hpp"
+#include "Utility.hpp"
 
 class Scene {
-
 	public:
+		Scene();
+		~Scene();
 		void addUpdateable(Updateable* obj);
 		void addDrawable(Drawable* obj);
-		void addEvent(SDL_Keycode key, Callback fn);
+		void addKeyEvent(SDL_Keycode key, Callback fn);
 
 	private:
 		std::vector<Updateable*> updateables;
@@ -21,9 +22,6 @@ class Scene {
 		std::vector<std::pair<SDL_Keycode, Callback > > keyEvents;
 
 	friend class Engine;
-
 };
-
-
 
 #endif

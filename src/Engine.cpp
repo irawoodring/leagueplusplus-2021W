@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include "Scene.hpp"
 
 // For linking purposes, we need to declare this static member in the cpp file.
 SDL_Renderer* Engine::renderer = nullptr;
@@ -44,7 +45,7 @@ void Engine::run(){
 }
 
 void Engine::setFrameRate(double _frameRate){
-
+	this->frameRate = _frameRate;
 }
 
 void Engine::setScene(Scene* scene){

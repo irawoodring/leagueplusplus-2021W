@@ -2,16 +2,13 @@
 #define			__H__INTERFACES__
 
 #include <SDL2/SDL.h>
-#include <functional>
-
-typedef std::function<void(double)> Callback;
+#include "Utility.hpp"
 
 class GameObject {
 	public:
 
 	private:
-		double x = 0;
-		double y = 0;
+		Vector3 position;
 	protected:
 
 };

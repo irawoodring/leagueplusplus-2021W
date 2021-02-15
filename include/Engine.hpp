@@ -22,7 +22,4 @@ class Engine {
 		Scene* currentScene;
 };
 
-
-
-
 #endif

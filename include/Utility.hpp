@@ -10,6 +10,7 @@ class Vector2 {
 		Vector2(double x=0.0, double y=0.0);
 		double getX();
 		double getY();
+		void setX(double x);
 		
 	private:
 		double x;

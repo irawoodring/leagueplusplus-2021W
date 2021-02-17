@@ -5,7 +5,7 @@
 #include "Utility.hpp"
 
 class GameObject {
-	private:
+	protected:
 		Vector3 position;
 
 };

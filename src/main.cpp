@@ -1,4 +1,5 @@
 #include "Engine.hpp"
+#include "Banana.hpp"
 #include <SDL2/SDL.h>
 
 int main(int argc, char** argv){
@@ -9,5 +10,9 @@ int main(int argc, char** argv){
 
 	Scene one;
 	Engine engine(1024, 768);
+	Banana* b = new Banana();
+	one.addUpdateable(b);
+	one.addDrawable(b);
+	engine.setScene(&one);
 	engine.run();
 }

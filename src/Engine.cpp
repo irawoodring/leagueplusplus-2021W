@@ -14,19 +14,26 @@ Engine::Engine(int _width, int _height){
 		SDL_Log("Could not create a window. %s", SDL_GetError());
 	}
 	Engine::renderer = SDL_CreateRenderer(window, -1, 0);
-	if( renderer == nullptr ){
+	if( Engine::renderer == nullptr ){
 		SDL_Log("Could not create a renderer. %s", SDL_GetError());
 	}
-	
 }
 
 Engine::~Engine(){
+	SDL_Log("Destroying renderer.");
 	SDL_DestroyRenderer(Engine::renderer);
+	SDL_Log("Destroying window.");
 	SDL_DestroyWindow(window);
+	SDL_Log("Shutting down...");
 	SDL_Quit();
+	SDL_Log("Shutdown complete.");
 }
 
 void Engine::run(){
+	if(currentScene == nullptr){
+		SDL_Log("No scene added yet to engine! - Aborting.");
+		return;
+	}
 	bool quit = false;
 	SDL_Event event;
 	last = SDL_GetTicks();
@@ -50,7 +57,7 @@ void Engine::run(){
 			(*it)->update(gameDelta);
 		}			
 		
-		SDL_SetRenderDrawColor(Engine::renderer, 0, 0, 0, 0);
+		SDL_SetRenderDrawColor(Engine::renderer, 0, 101, 164, 255);
 		SDL_RenderClear(Engine::renderer);
 		// Render
 		for(std::vector<Drawable*>::iterator it = currentScene->drawables.begin(); it != currentScene->drawables.end(); ++it){
@@ -66,4 +73,8 @@ void Engine::setFrameRate(double _frameRate){
 
 void Engine::setScene(Scene* scene){
 	this->currentScene = scene;	
+}
+
+SDL_Renderer* Engine::getRenderer(){
+	return Engine::renderer;
 }

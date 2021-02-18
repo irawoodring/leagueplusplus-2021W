@@ -35,3 +35,16 @@ void Banana::draw(){
 	dst->h = rect->h;
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
 }
+
+void Banana::left(){
+	position.setX(position.getX() - 1);
+}
+void Banana::right(){
+	position.setX(position.getX() + 1);
+}
+void Banana::up(){
+	position.setY(position.getY() - 1);
+}
+void Banana::down(){
+	position.setY(position.getY() + 1);
+}

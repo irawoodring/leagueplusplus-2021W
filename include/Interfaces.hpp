@@ -5,11 +5,8 @@
 #include "Utility.hpp"
 
 class GameObject {
-	public:
-
-	private:
-		Vector3 position;
 	protected:
+		Vector3 position;
 
 };
 
@@ -21,13 +18,13 @@ class Updateable {
 
 class Drawable {
 	public:
+		Drawable();
 		virtual void draw() = 0;
 		virtual ~Drawable() = default;
 
-	private:
-
 	protected:
 		SDL_Rect* rect;
+		SDL_Surface* surface;
 		SDL_Texture* texture;
 };
 

@@ -13,6 +13,10 @@ double Vector2::getX(){
 	return this->x;
 }
 
+void Vector2::setX(double x){
+	this->x = x;
+}
+
 double Vector2::getY(){
 	return this->y;
 }

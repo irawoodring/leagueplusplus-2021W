@@ -21,6 +21,15 @@ double Vector2::getY(){
 	return this->y;
 }
 
+void Vector2::setY(double y){
+	this->y = y;
+}
+
 double Vector3::getZ(){
 	return this->z;
 }
+
+void Vector3::setZ(double z){
+	this->z = z;
+}
+

@@ -11,8 +11,9 @@ class Vector2 {
 		double getX();
 		double getY();
 		void setX(double x);
+		void setY(double y);
 		
-	private:
+	protected:
 		double x;
 		double y;
 };
@@ -21,7 +22,8 @@ class Vector3 : public Vector2 {
 	public:
 		Vector3(double x=0.0, double y=0.0, double z=0.0); 
 		double getZ();
-	private:
+		void setZ(double z);
+	protected:
 		double z;
 };
 

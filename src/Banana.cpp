@@ -24,7 +24,8 @@ Banana::~Banana(){
 }
 
 void Banana::update(double delta){
-
+	// So we stop getting the compiler warning for now.
+	delta = delta * 1;
 }
 
 void Banana::draw(){
@@ -36,15 +37,16 @@ void Banana::draw(){
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
 }
 
-void Banana::left(){
-	position.setX(position.getX() - 1);
+void Banana::left(double delta){
+	position.setX(position.getX() - 100 * delta );
 }
-void Banana::right(){
-	position.setX(position.getX() + 1);
+void Banana::right(double delta){
+	position.setX(position.getX() + 100 * delta );
 }
-void Banana::up(){
-	position.setY(position.getY() - 1);
+void Banana::up(double delta){
+	position.setY(position.getY() - 100 * delta );
+	SDL_Log("Delta: %f.", delta);
 }
-void Banana::down(){
-	position.setY(position.getY() + 1);
+void Banana::down(double delta){
+	position.setY(position.getY() + 100 * delta );
 }

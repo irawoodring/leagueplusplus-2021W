@@ -14,14 +14,16 @@ class Engine {
 		void setScene(Scene* scene);
 		static SDL_Renderer* getRenderer();
 	private:
-		unsigned int current;
-		unsigned int last;
+		unsigned long current;
+		unsigned long last;
 		static SDL_Renderer* renderer;
 		int height;
 		int width;
 		SDL_Window* window = nullptr;
 		double frameRate;
 		Scene* currentScene;
+		int cumulative;
+		int framecount;
 };
 
 #endif

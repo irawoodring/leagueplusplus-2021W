@@ -17,6 +17,14 @@ int main(int argc, char** argv){
 	Banana* b = new Banana();
 	one.addUpdateable(b);
 	one.addDrawable(b);
+	auto b_up = [b](double delta) { b->up(delta); };
+	auto b_down = [b](double delta) { b->down(delta); };
+	auto b_left = [b](double delta) { b->left(delta); };
+	auto b_right = [b](double delta) { b->right(delta); };
+	one.addKeyEvent( SDLK_w, b_up );
+	one.addKeyEvent( SDLK_a, b_left );
+	one.addKeyEvent( SDLK_d, b_right );
+	one.addKeyEvent( SDLK_s, b_down );
 
 	// Set the scene in the engine
 	engine.setScene(&one);

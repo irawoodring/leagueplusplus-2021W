@@ -11,10 +11,10 @@ class Banana : public DUGameObject {
 		~Banana();
 		void update(double delta);
 		void draw();	
-		void left();
-		void right();
-		void up();
-		void down();
+		void left(double delta);
+		void right(double delta);
+		void up(double delta);
+		void down(double delta);
 
 };
 

@@ -17,6 +17,7 @@ Engine::Engine(int _width, int _height){
 	if( Engine::renderer == nullptr ){
 		SDL_Log("Could not create a renderer. %s", SDL_GetError());
 	}
+	SDL_Log("Initialized. Frame rate set to %f.", frameRate);
 }
 
 Engine::~Engine(){
@@ -37,26 +38,46 @@ void Engine::run(){
 	bool quit = false;
 	SDL_Event event;
 	last = SDL_GetTicks();
+	cumulative = 0;
 	while(!quit){
+		if(cumulative>=1000){
+			SDL_Log("Framerate is %f (%d frames).", (double)framecount / (cumulative / 1000), framecount);
+			cumulative = 0;
+			framecount = 0;
+		}
 		last = current;
 		current = SDL_GetTicks();
 		int delta = current - last;
-		double gameDelta = (double)delta * 0.001;
+		if(delta >= 0){
+			cumulative += delta;
+		} else {
+			SDL_Log("Jitter.");
+		}
+		double gameDelta = delta / 1000.0;
+
 		// Get events
 		while(SDL_PollEvent(&event) > 0){
 			if(event.type == SDL_QUIT){
 				quit = true;
 			}
 
-			// Iterate over keyboard events
-			
+			// Check for keyboard events
+			if(event.type == SDL_KEYDOWN || event.type == SDL_KEYUP){
+				for(auto f = currentScene->keyEvents.begin(); f != currentScene->keyEvents.end(); ++f){
+					if(event.key.keysym.sym == (*f).first){
+						(*f).second(gameDelta);
+						//SDL_Log("Dispatched event. %d, %f", delta, gameDelta);
+					}
+				}
+			}
+
 		}
 
 		// Update objects
 		for(std::vector<Updateable*>::iterator it = currentScene->updateables.begin(); it != currentScene->updateables.end(); ++it){
 			(*it)->update(gameDelta);
 		}			
-		
+
 		SDL_SetRenderDrawColor(Engine::renderer, 0, 101, 164, 255);
 		SDL_RenderClear(Engine::renderer);
 		// Render
@@ -64,6 +85,16 @@ void Engine::run(){
 			(*it)->draw();
 		}
 		SDL_RenderPresent(Engine::renderer);
+
+		int wait = frameRate - delta;
+
+		// Straight up, SDL_Delay is not very accurate.
+		// Probably use something better.
+		if(wait >= 0 && wait < frameRate){
+			SDL_Delay(wait);
+			//SDL_Log("Waited for %u.", wait);
+		} 
+		framecount++;
 	}
 }
 

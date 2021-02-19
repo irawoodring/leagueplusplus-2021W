@@ -48,11 +48,15 @@ void Engine::run(){
 		last = current;
 		current = SDL_GetTicks();
 		int delta = current - last;
-		if(delta >= 0){
-			cumulative += delta;
-		} else {
-			SDL_Log("Jitter.");
+
+		// delta should be atleast the target framerate before we continue
+		while(delta < frameRate) {
+			SDL_Delay(frameRate - delta);
+			current = SDL_GetTicks();
+			delta = current - last;
 		}
+
+		cumulative += delta;
 		double gameDelta = delta / 1000.0;
 
 		// Get events
@@ -86,14 +90,6 @@ void Engine::run(){
 		}
 		SDL_RenderPresent(Engine::renderer);
 
-		int wait = frameRate - delta;
-
-		// Straight up, SDL_Delay is not very accurate.
-		// Probably use something better.
-		if(wait >= 0 && wait < frameRate){
-			SDL_Delay(wait);
-			//SDL_Log("Waited for %u.", wait);
-		} 
 		framecount++;
 	}
 }

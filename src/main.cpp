@@ -15,6 +15,7 @@ int main(int argc, char** argv){
 
 	// Make a banana and add to scene. Should update and draw.
 	Banana* b = new Banana();
+
 	one.addUpdateable(b);
 	one.addDrawable(b);
 	auto b_up = [b](double delta) { b->up(delta); };

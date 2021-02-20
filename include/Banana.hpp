@@ -3,14 +3,11 @@
 
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include "Interfaces.hpp"
+#include "Sprite.hpp"
 
-class Banana : public DUGameObject {
-	public:
+class Banana : public Sprite {
+	public:	
 		Banana();
-		~Banana();
-		void update(double delta);
-		void draw();	
 		void left(double delta);
 		void right(double delta);
 		void up(double delta);

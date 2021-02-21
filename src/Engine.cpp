@@ -30,6 +30,7 @@ Engine::~Engine(){
 	SDL_Log("Destroying window.");
 	SDL_DestroyWindow(window);
 	SDL_Log("Shutting down...");
+	TTF_Quit();
 	SDL_Quit();
 	SDL_Log("Shutdown complete.");
 }

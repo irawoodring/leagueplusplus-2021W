@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "Interfaces.hpp"
+#include "Utility.hpp"
 
 class Banana : public DUGameObject {
 	public:
@@ -15,6 +16,8 @@ class Banana : public DUGameObject {
 		void right(double delta);
 		void up(double delta);
 		void down(double delta);
+	private:
+		Vector3 velocity;
 
 };
 

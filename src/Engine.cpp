@@ -1,6 +1,8 @@
 #include "Engine.hpp"
 #include "Properties.hpp"
 #include "Scene.hpp"
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 
 // For linking purposes, we need to declare this static member in the cpp file.
 SDL_Renderer* Engine::renderer = nullptr;
@@ -10,6 +12,7 @@ Engine::Engine(int _width, int _height){
 	this->height = _height;
 	frameRate = 1000.0 / FPS;
 	SDL_Init(SDL_INIT_EVERYTHING);
+	TTF_Init();
 	window = SDL_CreateWindow("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
 	if( window == nullptr ){
 		SDL_Log("Could not create a window. %s", SDL_GetError());

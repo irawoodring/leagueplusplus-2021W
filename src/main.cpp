@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "Banana.hpp"
+#include "HUD.hpp"
 #include <SDL2/SDL.h>
 
 int main(int argc, char** argv){
@@ -25,6 +26,11 @@ int main(int argc, char** argv){
 	one.addKeyEvent( SDLK_a, b_left );
 	one.addKeyEvent( SDLK_d, b_right );
 	one.addKeyEvent( SDLK_s, b_down );
+
+	// Add the HUD
+	HUD* h = new HUD();
+	one.addUpdateable(h);
+	one.addDrawable(h);
 
 	// Set the scene in the engine
 	engine.setScene(&one);

@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "Sprite.hpp"
+#include <SDL2/SDL_ttf.h>
 
 Sprite::Sprite(std::string path){
 	surface = IMG_Load(path.c_str());
@@ -9,14 +10,42 @@ Sprite::Sprite(std::string path){
 		exit(1);
 	}
 
-	CreateTexture(surface);
+	createTexture(surface);
 }
 
 Sprite::Sprite(SDL_Surface* surface){
-	CreateTexture(surface);
+	createTexture(surface);
 }
 
-void Sprite::CreateTexture(SDL_Surface* surface){
+Sprite::Sprite(std::string text, std::string font, int fontSize, int r, int g, int b, int a){
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+
+	this->text = text;
+	
+	loadFont(font, fontSize);
+	createTextSurface();
+}
+
+void Sprite::loadFont(std::string font, int fontSize){
+	this->font = TTF_OpenFont(font.c_str(), fontSize);
+	if(this->font == NULL){
+		SDL_Log("No font. %s", TTF_GetError());
+	}
+}
+
+void Sprite::createTextSurface(){
+	surface = TTF_RenderText_Solid(this->font, this->text.c_str(), this->color);
+	if(surface == NULL){
+		SDL_Log("Can't create text. %s", SDL_GetError());
+	}
+
+	createTexture(surface);
+}
+
+void Sprite::createTexture(SDL_Surface* surface){
 	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
 	if( texture == NULL ){
 		SDL_Log("-----> HAVE YOU CREATED THE ENGINE YET? <-----");
@@ -46,4 +75,25 @@ void Sprite::draw(){
 	dst->w = rect->w;
 	dst->h = rect->h;
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
+}
+
+void Sprite::setColor(SDL_Color color){
+	setColor(color.r, color.g, color.b, color.a);
+}
+
+void Sprite::setColor(int r, int g, int b, int a){
+	color.r = r;
+	color.g = g;
+	color.b = b;
+	color.a = a;
+	createTextSurface();
+}
+
+void Sprite::setFont(std::string font, int fontSize){
+	loadFont(font, fontSize);
+} 
+
+void Sprite::setText(std::string text){
+	this->text = text;
+	createTextSurface();
 }

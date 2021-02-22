@@ -16,8 +16,19 @@ int main(int argc, char** argv){
 	// Make a banana and add to scene. Should update and draw.
 	Banana* b = new Banana();
 
+	// Make a text sprite
+	Sprite* s = new Sprite("Hello World", "./assets/Roboto-Regular.ttf", 50);
+	s->setColor(255, 0, 0);
+	s->setText("Hello World Changed");
+
+	
+
 	one.addUpdateable(b);
 	one.addDrawable(b);
+
+	one.addUpdateable(s);
+	one.addDrawable(s);
+
 	auto b_up = [b](double delta) { b->up(delta); };
 	auto b_down = [b](double delta) { b->down(delta); };
 	auto b_left = [b](double delta) { b->left(delta); };

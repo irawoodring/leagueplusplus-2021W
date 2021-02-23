@@ -8,6 +8,7 @@
 class Banana : public Sprite {
 	public:	
 		Banana();
+		void update(double delta);
 		void left(double delta);
 		void right(double delta);
 		void up(double delta);

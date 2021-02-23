@@ -19,7 +19,6 @@ Engine::Engine(int _width, int _height){
 	if( Engine::renderer == nullptr ){
 		SDL_Log("Could not create a renderer. %s", SDL_GetError());
 	}
-	SDL_SetRenderDrawBlendMode(Engine::renderer, SDL_BLENDMODE_BLEND);
 	SDL_Log("Initialized. Frame rate set to %f.", frameRate);
 }
 

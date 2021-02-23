@@ -12,7 +12,7 @@ class Sprite : public DUGameObject {
 		Sprite(std::string path);
 		Sprite(SDL_Surface* surface);
         ~Sprite();
-		void update(double delta);
+		virtual void update(double delta);
 		void draw();	
 		void setText(std::string text);
 		void setFont(std::string font, int fontSize);

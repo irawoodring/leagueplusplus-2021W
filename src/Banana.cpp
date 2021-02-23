@@ -4,6 +4,13 @@
 Banana::Banana() : Sprite("./assets/banana.png") {
 }
 
+// Simple update method to show that you can override the sprite update to add functionality
+void Banana::update(double delta){
+	if(position.getX() > 600) {
+		position.setX(0);
+	}
+}
+
 void Banana::left(double delta){
 	position.setX(position.getX() - 100 * delta );
 }

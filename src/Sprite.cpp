@@ -2,8 +2,9 @@
 #include "Sprite.hpp"
 #include <SDL2/SDL_ttf.h>
 
-Sprite::Sprite(std::string path){
+Sprite::Sprite(std::string path, int layer){
 	surface = IMG_Load(path.c_str());
+	this->layer = layer;
 
 	if( surface == NULL ){
 		SDL_Log("Unable to load sprite.");
@@ -13,16 +14,18 @@ Sprite::Sprite(std::string path){
 	createTexture(surface);
 }
 
-Sprite::Sprite(SDL_Surface* surface){
+Sprite::Sprite(SDL_Surface* surface, int layer){
+	this->layer = layer;
 	createTexture(surface);
 }
 
-Sprite::Sprite(std::string text, std::string font, int fontSize, int r, int g, int b, int a){
+Sprite::Sprite(std::string text, std::string font, int layer, int fontSize, int r, int g, int b, int a){
 	color.r = r;
 	color.g = g;
 	color.b = b;
 	color.a = a;
 
+	this->layer = layer;
 	this->text = text;
 	
 	loadFont(font, fontSize);
@@ -96,4 +99,16 @@ void Sprite::setFont(std::string font, int fontSize){
 void Sprite::setText(std::string text){
 	this->text = text;
 	createTextSurface();
+}
+
+void Sprite::setLayer(int layer){
+	this->layer = layer;
+}
+
+bool Sprite::operator<(Sprite sprite){
+	if(this->layer < sprite.layer) {
+		return true;
+	}
+
+	return false;
 }

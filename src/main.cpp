@@ -17,11 +17,11 @@ int main(int argc, char** argv){
 	Banana* b = new Banana();
 
 	// Make a text sprite
-	Sprite* s = new Sprite("Hello World", "./assets/Roboto-Regular.ttf", 50);
+	Sprite* s = new Sprite("Hello World", "./assets/Roboto-Regular.ttf", 50, 1);
 	s->setColor(255, 0, 0);
 	s->setText("Hello World Changed");
 
-	
+	bool compareResults = b < s;
 
 	one.addUpdateable(b);
 	one.addDrawable(b);

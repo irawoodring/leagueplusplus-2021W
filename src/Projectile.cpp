@@ -1,11 +1,10 @@
 #include "Engine.hpp"
-#include "Banana.hpp"
 #include "Projectile.hpp"
 
-Banana::Banana(){
-	surface = IMG_Load("./assets/banana.png");
+Projectile::Projectile(){
+	surface = IMG_Load("./assets/star.png");
 	if( surface == NULL ){
-		SDL_Log("Unable to load banana.");
+		SDL_Log("Unable to load star.");
 		exit(1);
 	}
 	texture = SDL_CreateTextureFromSurface(Engine::getRenderer(), surface);
@@ -22,12 +21,12 @@ Banana::Banana(){
 	velocity.setZ(0);
 }
 
-Banana::~Banana(){
+Projectile::~Projectile(){
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(surface);
 }
 
-void Banana::update(double delta){
+void Projectile::update(double delta){
 	// So we stop getting the compiler warning for now.
 	position.setX(position.getX() + velocity.getX() * delta);
 	position.setY(position.getY() + velocity.getY() * delta);
@@ -39,46 +38,11 @@ void Banana::update(double delta){
 	}
 }
 
-void Banana::draw(){
+void Projectile::draw(){
 	SDL_Rect* dst = new SDL_Rect();
 	dst->x = position.getX();
 	dst->y = position.getY();
 	dst->w = rect->w;
 	dst->h = rect->h;
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
-}
-
-void Banana::left(double delta){
-	if(velocity.getX() > -200){
-		velocity.setX(velocity.getX() - 10);
-	}
-}
-void Banana::right(double delta){
-	if(velocity.getX() < 200){
-		velocity.setX(velocity.getX() + 10);
-	}
-}
-void Banana::up(double delta){
-	if(velocity.getY() > -200 ){
-		velocity.setY(velocity.getY() - 10);
-	}
-}
-void Banana::down(double delta){
-	if(velocity.getY() < 200 ){
-		velocity.setY(velocity.getY() + 10);
-	}
-}
-
-void Banana::setScene(Scene* scene){
-	this->scene = scene;
-}
-
-void Banana::fire(double delta){
-	Projectile* p = new Projectile();
-	p->position.setX( position.getX() );
-	p->position.setY( position.getY() );
-	p->velocity.setX(velocity.getX() * 2);
-	p->velocity.setY(velocity.getY() * 2);
-	this->scene->addDrawable(p);
-	this->scene->addUpdateable(p);
 }

@@ -7,7 +7,6 @@ Sprite::Sprite(std::string path, int layer, int width, int height){
 	this->layer = layer;
 	this->width = width;
 	this->height = height;
-	
 	if( surface == NULL ){
 		SDL_Log("Unable to load sprite.");
 		exit(1);
@@ -61,8 +60,18 @@ void Sprite::createTexture(SDL_Surface* surface){
 
 	rect->x = 0;
 	rect->y = 0;
-	rect->w = surface->w;
-	rect->h = surface->h;
+	
+	if(width == -1){
+		rect->w = surface->w;
+	}else{
+		rect->w = width;
+	}
+
+	if(height == -1){
+		rect->h = surface->h;
+	}else{
+		rect->h = height;
+	}
 }
 
 Sprite::~Sprite(){
@@ -80,17 +89,8 @@ void Sprite::draw(){
 	dst->x = position.getX();
 	dst->y = position.getY();
 
-	if(width == -1) {
-		dst->w = rect->w;
-	}else{
-		dst->w = width;
-	}
-
-	if(height == -1) {
-		dst->h = rect->h;
-	}else{
-		dst->h = height;
-	}
+	dst->w = rect->w;
+	dst->h = rect->h;
 
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
 }

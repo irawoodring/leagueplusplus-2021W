@@ -2,10 +2,12 @@
 #include "Sprite.hpp"
 #include <SDL2/SDL_ttf.h>
 
-Sprite::Sprite(std::string path, int layer){
+Sprite::Sprite(std::string path, int layer, int width, int height){
 	surface = IMG_Load(path.c_str());
 	this->layer = layer;
-
+	this->width = width;
+	this->height = height;
+	
 	if( surface == NULL ){
 		SDL_Log("Unable to load sprite.");
 		exit(1);
@@ -14,8 +16,10 @@ Sprite::Sprite(std::string path, int layer){
 	createTexture(surface);
 }
 
-Sprite::Sprite(SDL_Surface* surface, int layer){
+Sprite::Sprite(SDL_Surface* surface, int layer, int width, int height){
 	this->layer = layer;
+	this->width = width;
+	this->height = height;
 	createTexture(surface);
 }
 
@@ -75,8 +79,19 @@ void Sprite::draw(){
 	SDL_Rect* dst = new SDL_Rect();
 	dst->x = position.getX();
 	dst->y = position.getY();
-	dst->w = rect->w;
-	dst->h = rect->h;
+
+	if(width == -1) {
+		dst->w = rect->w;
+	}else{
+		dst->w = width;
+	}
+
+	if(height == -1) {
+		dst->h = rect->h;
+	}else{
+		dst->h = height;
+	}
+
 	SDL_RenderCopy(Engine::getRenderer(), texture, NULL, dst);
 }
 
@@ -103,6 +118,11 @@ void Sprite::setText(std::string text){
 
 void Sprite::setLayer(int layer){
 	this->layer = layer;
+}
+
+void Sprite::setSize(int width, int height){
+	this->width = width;
+	this->height = height;
 }
 
 bool Sprite::operator<(Sprite sprite){

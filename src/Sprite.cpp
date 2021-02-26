@@ -77,6 +77,7 @@ void Sprite::createTexture(SDL_Surface* surface){
 Sprite::~Sprite(){
 	SDL_DestroyTexture(texture);
 	SDL_FreeSurface(surface);
+	TTF_CloseFont(font);
 }
 
 void Sprite::update(double delta){

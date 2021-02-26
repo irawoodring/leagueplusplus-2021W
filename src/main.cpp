@@ -21,7 +21,7 @@ int main(int argc, char** argv){
 	s->setColor(255, 0, 0);
 	s->setText("Hello World Changed");
 
-	bool compareResults = b < s;
+	// bool compareResults = b < s;
 
 	one.addUpdateable(b);
 	one.addDrawable(b);
@@ -43,4 +43,8 @@ int main(int argc, char** argv){
 	
 	// Get the engine running.
 	engine.run();
+
+        // delete our banana and sprite once the game loop ends
+        delete b;
+        delete s;
 }

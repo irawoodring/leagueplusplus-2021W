@@ -1,5 +1,6 @@
 #include "Engine.hpp"
 #include "Projectile.hpp"
+#include "Projectile.hpp"
 
 Projectile::Projectile(){
 	surface = IMG_Load("./assets/star.png");

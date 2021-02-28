@@ -1,14 +1,15 @@
 #ifndef			__HPP__BANANA__
 #define			__HPP__BANANA__
 
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include "Sprite.hpp"
 #include "Interfaces.hpp"
 #include "Utility.hpp"
+#include <box2d/box2d.h>
+#include <string>
 
-class Banana : public DUGameObject {
+class Banana : public Sprite {
 	public:
-		Banana();
+		Banana(std::string path);
 		~Banana();
 		void update(double delta);
 		void draw();	
@@ -16,8 +17,10 @@ class Banana : public DUGameObject {
 		void right(double delta);
 		void up(double delta);
 		void down(double delta);
+		void setBody(b2Body* body);
 	private:
 		Vector3 velocity;
+		b2Body* body;
 
 };
 

@@ -7,7 +7,6 @@
 class GameObject {
 	protected:
 		Vector3 position;
-
 };
 
 class Updateable {

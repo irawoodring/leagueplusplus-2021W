@@ -2,3 +2,4 @@ a.out
 bin
 build
 .DS_Store
+.vscode

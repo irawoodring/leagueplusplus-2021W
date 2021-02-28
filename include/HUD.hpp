@@ -5,15 +5,15 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include "Interfaces.hpp"
+#include "Sprite.hpp"
 #include "Utility.hpp"
 #include <random>
 
-class HUD : public DUGameObject {
+class HUD : public Sprite {
 	public:
 		HUD();
 		~HUD();
 		void update(double delta);
-		void draw();	
 	private:
 		TTF_Font* stick;
 		SDL_Color color;

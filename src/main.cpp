@@ -17,18 +17,8 @@ int main(int argc, char** argv){
 	// Make a banana and add to scene. Should update and draw.
 	Banana* b = new Banana();
 
-	// Make a text sprite
-	Sprite* s = new Sprite("Hello World", "./assets/Roboto-Regular.ttf", 50, 1);
-	s->setColor(255, 0, 0);
-	s->setText("Hello World Changed");
-
-	// bool compareResults = b < s;
-
 	one.addUpdateable(b);
 	one.addDrawable(b);
-
-	one.addUpdateable(s);
-	one.addDrawable(s);
 
 	auto b_up = [b](double delta) { b->up(delta); };
 	auto b_down = [b](double delta) { b->down(delta); };
@@ -50,7 +40,6 @@ int main(int argc, char** argv){
 	// Get the engine running.
 	engine.run();
 
-        // delete our banana and sprite once the game loop ends
-        delete b;
-        delete s;
+	// delete our banana and sprite once the game loop ends
+	delete b;
 }

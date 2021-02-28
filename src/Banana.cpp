@@ -6,8 +6,14 @@ Banana::Banana() : Sprite("./assets/banana.png") {
 
 // Simple update method to show that you can override the sprite update to add functionality
 void Banana::update(double delta){
-	if(position.getX() > 600) {
-		position.setX(0);
+	// So we stop getting the compiler warning for now.
+	position.setX(position.getX() + velocity.getX() * delta);
+	position.setY(position.getY() + velocity.getY() * delta);
+	if(position.getX() > 1024-rect->w || position.getX() < 0){
+		velocity.setX(- velocity.getX());
+	}
+	if(position.getY() > 768-rect->h || position.getY() < 0){	
+		velocity.setY(- velocity.getY());	
 	}
 }
 

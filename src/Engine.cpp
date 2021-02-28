@@ -1,5 +1,7 @@
 #include "Engine.hpp"
+#include "Properties.hpp"
 #include "Scene.hpp"
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
 // For linking purposes, we need to declare this static member in the cpp file.
@@ -8,7 +10,7 @@ SDL_Renderer* Engine::renderer = nullptr;
 Engine::Engine(int _width, int _height){
 	this->width = _width;
 	this->height = _height;
-	frameRate = 1000.0 / 30;
+	frameRate = 1000.0 / FPS;
 	SDL_Init(SDL_INIT_EVERYTHING);
 	TTF_Init();
 	window = SDL_CreateWindow("Engine", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, 0);
@@ -28,6 +30,7 @@ Engine::~Engine(){
 	SDL_Log("Destroying window.");
 	SDL_DestroyWindow(window);
 	SDL_Log("Shutting down...");
+	TTF_Quit();
 	SDL_Quit();
 	SDL_Log("Shutdown complete.");
 }
@@ -85,7 +88,7 @@ void Engine::run(){
 			(*it)->update(gameDelta);
 		}			
 
-		SDL_SetRenderDrawColor(Engine::renderer, 0, 101, 164, 255);
+		SDL_SetRenderDrawColor(Engine::renderer, BGR, BGG, BGB, BGA);
 		SDL_RenderClear(Engine::renderer);
 		// Render
 		for(std::vector<Drawable*>::iterator it = currentScene->drawables.begin(); it != currentScene->drawables.end(); ++it){

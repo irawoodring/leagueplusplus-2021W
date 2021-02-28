@@ -12,15 +12,22 @@ void Banana::update(double delta){
 }
 
 void Banana::left(double delta){
-	position.setX(position.getX() - 100 * delta );
+	if(velocity.getX() > -200){
+		velocity.setX(velocity.getX() - 10);
+	}
 }
 void Banana::right(double delta){
-	position.setX(position.getX() + 100 * delta );
+	if(velocity.getX() < 200){
+		velocity.setX(velocity.getX() + 10);
+	}
 }
 void Banana::up(double delta){
-	position.setY(position.getY() - 100 * delta );
-	SDL_Log("Delta: %f.", delta);
+	if(velocity.getY() > -200 ){
+		velocity.setY(velocity.getY() - 10);
+	}
 }
 void Banana::down(double delta){
-	position.setY(position.getY() + 100 * delta );
+	if(velocity.getY() < 200 ){
+		velocity.setY(velocity.getY() + 10);
+	}
 }

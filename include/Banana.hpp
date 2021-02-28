@@ -4,6 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "Sprite.hpp"
+#include "Utility.hpp"
 
 class Banana : public Sprite {
 	public:	
@@ -13,6 +14,8 @@ class Banana : public Sprite {
 		void right(double delta);
 		void up(double delta);
 		void down(double delta);
+	private:
+		Vector3 velocity;
 
 };
 

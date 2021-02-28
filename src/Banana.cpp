@@ -12,8 +12,8 @@ void Banana::update(double delta){
 	if(position.getX() > 1024-rect->w || position.getX() < 0){
 		velocity.setX(- velocity.getX());
 	}
-	if(position.getY() > 768-rect->h || position.getY() < 0){	
-		velocity.setY(- velocity.getY());	
+	if(position.getY() > 768-rect->h || position.getY() < 0){
+		velocity.setY(- velocity.getY());
 	}
 }
 

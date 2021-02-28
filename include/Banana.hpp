@@ -7,7 +7,7 @@
 #include "Utility.hpp"
 
 class Banana : public Sprite {
-	public:	
+	public:
 		Banana();
 		void update(double delta);
 		void left(double delta);

@@ -4,7 +4,6 @@
 Banana::Banana() : Sprite("./assets/banana.png") {
 }
 
-// Simple update method to show that you can override the sprite update to add functionality
 void Banana::update(double delta){
 	// So we stop getting the compiler warning for now.
 	position.setX(position.getX() + velocity.getX() * delta);

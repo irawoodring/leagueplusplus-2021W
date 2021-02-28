@@ -44,10 +44,9 @@ void Engine::run(){
 	SDL_Event event;
 	last = SDL_GetTicks();
 	cumulative = 0;
-        framecount = 0;
 	while(!quit){
 		if(cumulative>=1000){
-			SDL_Log("Framerate is %f (%d frames).", (float)framecount / (cumulative / 1000), framecount);
+			SDL_Log("Framerate is %f (%d frames).", (double)framecount / (cumulative / 1000), framecount);
 			cumulative = 0;
 			framecount = 0;
 		}

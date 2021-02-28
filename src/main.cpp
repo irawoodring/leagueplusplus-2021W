@@ -16,10 +16,8 @@ int main(int argc, char** argv){
 
 	// Make a banana and add to scene. Should update and draw.
 	Banana* b = new Banana();
-
 	one.addUpdateable(b);
 	one.addDrawable(b);
-
 	auto b_up = [b](double delta) { b->up(delta); };
 	auto b_down = [b](double delta) { b->down(delta); };
 	auto b_left = [b](double delta) { b->left(delta); };
@@ -39,7 +37,4 @@ int main(int argc, char** argv){
 	
 	// Get the engine running.
 	engine.run();
-
-	// delete our banana and sprite once the game loop ends
-	delete b;
 }

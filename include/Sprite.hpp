@@ -28,7 +28,7 @@ class Sprite : public DUGameObject {
 	private:
 		std::string text;
 		SDL_Color color;
-		TTF_Font* font = NULL;
+		TTF_Font* font = nullptr;
 		int layer;
 
 		// Values for scaling the sprite if we want
